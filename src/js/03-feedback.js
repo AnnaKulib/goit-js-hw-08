@@ -35,13 +35,16 @@ function onSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     // console.log(formData);
+    const email = event.currentTarget.elements.email.value;
+    const message = event.currentTarget.elements.message.value;
+
+    if (!email|| !message) {
+        return alert("Заполните все поля!");
+    }
+
     formData.forEach((value, key) => {
         console.log(` ${key}: ${value}`);
     });
-
-    // if (!formData.value|| !formData.key) {
-    //     return alert("Заполните все поля!");
-    // }
 
     event.currentTarget.reset();
     localStorage.removeItem(KEY);

@@ -13,16 +13,9 @@ import Player from '@vimeo/player';
     
     player.on('timeupdate', throttle(onPlay, 1000));
 
-    player.setCurrentTime(localStorage.getItem(KEY)).then(function(seconds){
-    seconds = localStorage.getItem(KEY);
-      }).catch(function(error) {
-        switch (error.name) {
-            case 'RangeError':
-              console.log(error.name);   
-                break;
-  
-            default:
-              console.log('some other error occurred');
-                break;
-        }
-      });
+    const setTime = localStorage.getItem(KEY);
+
+    if (setTime) {
+      player.setCurrentTime(setTime)
+    }
+   
